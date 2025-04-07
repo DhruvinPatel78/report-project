@@ -10,7 +10,7 @@ interface DraggableCardProps {
   onDragStart: (e: React.DragEvent<HTMLDivElement>, id: number) => void;
   onDragOver: (e: React.DragEvent<HTMLDivElement>) => void;
   onDrop: (e: React.DragEvent<HTMLDivElement>, id: number) => void;
-  currentId?: string;
+  currentId?: number;
   onClick: (id: number, index: number) => void;
   index: number;
 }
