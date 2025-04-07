@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-interface LoadingSpinnerProps extends React.SVGProps<SVGSVGElement> {
+interface LoadingSpinnerProps {
   size?: number;
   className?: string;
 }
