@@ -38,7 +38,8 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         cx={100}
         cy={100}
         r={70}
-        transformOrigin={"center"}
+        transform="rotate(45deg)"
+        transformOrigin={"-100% 50%"}
       >
         <animateTransform
           type="rotate"
