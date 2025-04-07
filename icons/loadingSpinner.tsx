@@ -38,15 +38,13 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         cx={100}
         cy={100}
         r={70}
-        transform="rotate(45deg)"
-        transformOrigin={"-100% 50%"}
       >
         <animateTransform
           type="rotate"
           attributeName="transform"
           calcMode="discrete"
           dur="2"
-          values="360;324;288;252;216;180;144;108;72;36"
+          values="0 100 100; 360 100 100"
           repeatCount="indefinite"
         ></animateTransform>
       </circle>
