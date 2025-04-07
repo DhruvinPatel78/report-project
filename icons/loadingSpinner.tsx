@@ -20,7 +20,7 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
       viewBox="0 0 200 200"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn("animate-spin", className)}
@@ -32,12 +32,12 @@ export const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
       <circle
         fill="none"
         stroke="url(#a11)"
-        strokeWidth="15"
+        strokeWidth={15}
         strokeLinecap="round"
         strokeDasharray="0 44 0 44 0 44 0 44 0 360"
-        cx="100"
-        cy="100"
-        r="70"
+        cx={100}
+        cy={100}
+        r={70}
         transformOrigin="center"
       >
         <animateTransform
