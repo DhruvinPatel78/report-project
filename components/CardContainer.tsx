@@ -1,7 +1,6 @@
 import React from "react";
 import DraggableCard from "./DraggableCard";
 
-// Define the type for a card object
 interface Card {
   id: number;
   title: string;

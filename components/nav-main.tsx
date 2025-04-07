@@ -5,7 +5,6 @@ import {
   ChevronRight,
   CreditCard,
   LogOut,
-  LucideIcon,
 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -38,36 +37,36 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-export type NavItem = {
-  title: string;
-  url: string;
-  icon?: LucideIcon;
-  isActive?: boolean;
-  items?: NavItem[];
-};
-export type User = {
+interface User {
   name: string;
   email: string;
-  avatar?: string;
-  icon?: LucideIcon;
-};
+  avatar: string;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+interface NavItem {
+  title: string;
+  url: string;
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  items?: NavItem[];
+}
+
+interface NavMainProps {
+  items: NavItem[];
+  user?: User;
+  title?: string;
+}
+
 export const getFallbackName = (name: string): string => {
-  const initials: string | undefined = name
+  const initials = name
     ?.split(" ")
     ?.map((word) => word.charAt(0))
     .join("");
 
-  return initials?.toUpperCase() as string;
+  return initials?.toUpperCase() || "";
 };
-export function NavMain({
-  items,
-  user,
-  title,
-}: {
-  items: NavItem[];
-  user?: User;
-  title?: string;
-}) {
+
+export function NavMain({ items, user, title }: NavMainProps) {
   const router = useRouter();
   const { isMobile } = useSidebar();
   const currentPath = usePathname();
@@ -86,13 +85,11 @@ export function NavMain({
 
   const renderNavItems = (items: NavItem[], depth = 0) =>
     items.map((item) => {
-      const isActive: boolean = isItemActive(item);
-      const isExpanded: boolean = expandedSections.includes(item.title);
-      const hasSubItems: boolean | undefined =
-        item.items && item.items.length > 0;
-      const isExpandable: boolean =
-        hasSubItems || item.url === "#" || item.url === "";
-      const fontSizeClass: string = cn({
+      const isActive = isItemActive(item);
+      const isExpanded = expandedSections.includes(item.title);
+      const hasSubItems = item.items && item.items.length > 0;
+      const isExpandable = hasSubItems || item.url === "#" || item.url === "";
+      const fontSizeClass = cn({
         "text-sm": depth === 0 || depth === 1,
         "text-[0.80rem]": depth > 1,
       });
@@ -187,7 +184,8 @@ export function NavMain({
         </SidebarMenuItem>
       );
     });
-  const renderUser:(user: User) => (null | React.JSX.Element) = (user:User) => {
+
+  const renderUser = (user?: User) => {
     if (!user) return null;
     return (
       <SidebarMenuItem>
@@ -258,6 +256,7 @@ export function NavMain({
       </SidebarMenuItem>
     );
   };
+
   return (
     <SidebarGroup>
       <SidebarMenu>
